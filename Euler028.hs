@@ -24,3 +24,10 @@ diagonalsSum n = helper 0 n
         helper curr m = helper (curr + sum4 m) (m-2)
 
 result028 = diagonalsSum 1001
+
+-- improved fomula by Mathematica
+
+diagonalsSum' :: Int -> Int
+diagonalsSum' n = (-9 + n * (8 + n * (3 + 4 * n))) `div` 6
+
+result028' = diagonalsSum' 1001
