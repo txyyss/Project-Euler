@@ -47,6 +47,7 @@ findFactors x = testDiv [] x $ primesTo (floor . sqrt $ fromIntegral x)
           | m `mod` n == 0 = remove (m `div` n) n
           | otherwise = m
 
+findFirst :: Int -> Int -> [Int] -> Int
 findFirst 4 num _ = num - 3
 findFirst n num (x:xs) 
   | x - num /= 1 = findFirst 1 x xs
