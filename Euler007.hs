@@ -3,7 +3,7 @@
 
 -- What is the 10001st prime number?
 
-module Euler where
+module Euler007 where
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
   LT -> x : minus xs ly

@@ -2,7 +2,7 @@
 
 -- What is the sum of the digits of the number 2^1000?
 
-module Euler where
+module Euler016 where
 
 import Data.Char (digitToInt)
 

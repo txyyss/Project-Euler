@@ -4,6 +4,6 @@
 -- What is the smallest positive number that is evenly divisible by
 -- all of the numbers from 1 to 20?
 
-module Euler where
+module Euler005 where
 
 result005 = foldr1 lcm [1..20]

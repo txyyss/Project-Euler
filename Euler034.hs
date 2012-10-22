@@ -5,7 +5,7 @@
 
 -- Note: as 1! = 1 and 2! = 2 are not sums they are not included.
 
-module Euler where
+module Euler034 where
 
 import Data.Array
 import Data.Char (digitToInt)

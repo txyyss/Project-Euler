@@ -10,7 +10,7 @@
 -- Find the next triangle number that is also pentagonal and
 -- hexagonal.
 
-module Euler where
+module Euler045 where
 
 common :: Ord a => [a] -> [a] -> [a]
 common a@(x:xs) b@(y:ys)

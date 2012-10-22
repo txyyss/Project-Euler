@@ -8,7 +8,7 @@
 
 -- Find the product abc.
 
-module Euler where
+module Euler009 where
 
 -- All Pythagorean triples can be represented as (m^2 - n^2, 2*m*n,
 -- m^2 + n^2) with m > n. The sum of triple is 2 * m * (m + n).

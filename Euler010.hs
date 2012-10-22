@@ -2,7 +2,7 @@
 
 -- Find the sum of all the primes below two million.
 
-module Euler where
+module Euler010 where
 
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 

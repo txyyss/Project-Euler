@@ -12,7 +12,7 @@
 -- HINT: Some products can be obtained in more than one way so be sure
 -- to only include it once in your sum.
 
-module Euler where
+module Euler032 where
 
 import Data.List (sort, group)
 

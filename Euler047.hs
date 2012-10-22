@@ -14,7 +14,7 @@
 -- Find the first four consecutive integers to have four distinct
 -- primes factors. What is the first of these numbers?
 
-module Euler where
+module Euler047 where
 
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 

@@ -18,7 +18,7 @@
 -- Find the value of d 1000 for which 1/d contains the longest
 -- recurring cycle in its decimal fraction part.
 
-module Euler where
+module Euler026 where
 
 import Data.List (maximumBy)
 import Data.Ord (comparing)

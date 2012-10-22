@@ -12,7 +12,7 @@
 -- necessarily adjacent digits) with the same digit, is part of an
 -- eight prime value family.
 
-module Euler where
+module Euler051 where
 
 import Data.Char (digitToInt)
 

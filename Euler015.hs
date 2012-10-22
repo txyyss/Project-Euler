@@ -3,7 +3,7 @@
 
 -- How many routes are there through a 20 * 20 grid?
 
-module Euler where
+module Euler015 where
 
 routesCount :: Integral a => a -> a -> a
 routesCount m n = product [(m + 1)..(m + n)] `div` product [2..n]

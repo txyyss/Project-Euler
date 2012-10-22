@@ -10,7 +10,7 @@
 -- and difference is pentagonal and D = |Pk - Pj| is minimised; what
 -- is the value of D?
 
-module Euler where
+module Euler044 where
 
 isPentagonal :: Integral a => a -> Bool
 isPentagonal n = p && (root + 1) `mod` 6 == 0

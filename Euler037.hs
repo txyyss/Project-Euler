@@ -8,7 +8,7 @@
 
 -- NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 
-module Euler where
+module Euler037 where
 
 import Data.List (union, inits, tails)
 import Data.Char (digitToInt)

@@ -32,7 +32,7 @@
 -- challenge with a triangle containing one-hundred rows; it cannot be
 -- solved by brute force, and requires a clever method! ;o)
 
-module Euler where
+module Euler018 where
 
 input = [[75],
          [95, 64],

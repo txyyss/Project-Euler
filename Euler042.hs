@@ -13,7 +13,7 @@
 -- text file containing nearly two-thousand common English words, how
 -- many are triangle words?
 
-module Euler where
+module Euler042 where
 
 import Data.Char (ord, toUpper)
 

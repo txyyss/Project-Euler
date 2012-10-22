@@ -10,7 +10,7 @@
 
 -- What is the total of all the name scores in the file?
 
-module Euler where
+module Euler022 where
 
 import Data.Char (ord, toUpper)
 import Data.List (sort)

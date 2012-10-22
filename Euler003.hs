@@ -2,7 +2,7 @@
 
 -- What is the largest prime factor of the number 600851475143 ?
 
-module Euler where
+module Euler003 where
 
 -- a slow prime test version
 minus :: Ord a => [a] -> [a] -> [a]

@@ -11,7 +11,7 @@
 -- Which prime, below one-million, can be written as the sum of the
 -- most consecutive primes?
 
-module Euler where
+module Euler050 where
 
 import Data.List (maximumBy)
 import Data.Ord (comparing)

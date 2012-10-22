@@ -6,7 +6,7 @@
 
 -- How many circular primes are there below one million?
 
-module Euler where
+module Euler035 where
 
 import Data.Char (digitToInt)
 

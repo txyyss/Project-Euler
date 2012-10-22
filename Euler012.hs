@@ -20,7 +20,7 @@
 -- What is the value of the first triangle number to have over five
 -- hundred divisors?
 
-module Euler where
+module Euler012 where
 
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 

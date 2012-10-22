@@ -16,7 +16,7 @@
 -- formed as the concatenated product of an integer with (1,2, ... ,
 -- n) where n > 1?
 
-module Euler where
+module Euler038 where
 
 import Data.List (sort)
 import Data.Char (digitToInt)

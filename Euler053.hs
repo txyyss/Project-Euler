@@ -14,7 +14,7 @@
 -- How many, not necessarily distinct, values of nCr, for 1 <= n <=
 -- 100, are greater than one-million?
 
-module Euler where
+module Euler053 where
 
 binomial :: Integral a => a -> a -> a
 binomial n r = product [(n-r+1)..n] `div` (product [2..r])

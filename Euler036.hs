@@ -7,7 +7,7 @@
 -- (Please note that the palindromic number, in either base, may not
 -- include leading zeros.)
 
-module Euler where
+module Euler036 where
 
 import Numeric (showIntAtBase)
 import Data.Char (intToDigit)

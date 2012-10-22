@@ -6,7 +6,7 @@
 -- 1*£1 + 1*50p + 2*20p + 1*5p + 1*2p + 3 * 1p
 -- How many different ways can £2 be made using any number of coins?
 
-module Euler where
+module Euler031 where
 
 changeCount :: Int -> [Int] -> Int
 changeCount 0 _ = 1

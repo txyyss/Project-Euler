@@ -10,7 +10,7 @@
 
 -- Evaluate the sum of all the amicable numbers under 10000.
 
-module Euler where
+module Euler021 where
 
 properDivisors :: Int -> [Int]
 properDivisors n = tryDivide [1] [2..(floor $ sqrt $ fromIntegral n)]

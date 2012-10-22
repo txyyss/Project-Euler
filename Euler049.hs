@@ -10,7 +10,7 @@
 -- What 12-digit number do you form by concatenating the three terms
 -- in this sequence?
 
-module Euler where
+module Euler049 where
 
 import Data.List (sort, group, permutations)
 import Data.Char (digitToInt)

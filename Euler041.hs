@@ -4,7 +4,7 @@
 
 -- What is the largest n-digit pandigital prime that exists?
 
-module Euler where
+module Euler041 where
 
 import Data.List (sort)
 

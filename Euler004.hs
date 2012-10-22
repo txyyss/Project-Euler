@@ -5,7 +5,7 @@
 -- Find the largest palindrome made from the product of two 3-digit
 -- numbers.
 
-module Euler where
+module Euler004 where
 
 -- natural version
 isPalindrome :: Int -> Bool

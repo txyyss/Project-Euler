@@ -10,7 +10,7 @@
 -- fifteen) contains 20 letters. The use of "and" when writing out
 -- numbers is in compliance with British usage.
 
-module Euler where
+module Euler017 where
 
 intToEnglish :: Int -> String
 intToEnglish n

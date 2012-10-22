@@ -22,7 +22,7 @@
 -- What is the first term in the Fibonacci sequence to contain 1000
 -- digits?
 
-module Euler where
+module Euler025 where
 
 fib :: Int -> (Integer, Integer) -> Int
 fib ind (a, b)

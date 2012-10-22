@@ -5,7 +5,7 @@
 
 -- Find the sum of the digits in the number 100!
 
-module Euler where
+module Euler020 where
 
 import Data.Char (digitToInt)
 

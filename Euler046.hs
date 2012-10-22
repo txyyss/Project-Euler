@@ -13,7 +13,7 @@
 -- What is the smallest odd composite that cannot be written as the
 -- sum of a prime and twice a square?
 
-module Euler where
+module Euler046 where
 
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 

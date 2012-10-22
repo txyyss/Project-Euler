@@ -19,7 +19,7 @@
 -- NOTE: Once the chain starts the terms are allowed to go above one
 -- million.
 
-module Euler where
+module Euler014 where
 
 import Data.Array
 import Data.List (maximumBy)

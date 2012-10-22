@@ -13,7 +13,7 @@
 -- What is the sum of the numbers on the diagonals in a 1001 by 1001
 -- spiral formed in the same way?
 
-module Euler where
+module Euler028 where
 
 sum4 :: Int -> Int
 sum4 n = n * (4 * n - 6) + 6

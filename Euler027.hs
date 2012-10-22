@@ -22,7 +22,7 @@
 -- expression that produces the maximum number of primes for
 -- consecutive values of n, starting with n = 0.
 
-module Euler where
+module Euler027 where
 
 import Data.List (maximumBy)
 import Data.Ord (comparing)
