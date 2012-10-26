@@ -44,6 +44,7 @@ get4DigitNumbers i = dropWhile (<=999) . takeWhile (<=9999) $ map (polygonNum i)
 canConcat :: Integral a => a -> a -> Bool
 canConcat m n = m `mod` 100 == n `div` 100
 
+findCycles :: (Eq b, Integral t, Num b) => [b] -> [[t]]
 findCycles [i1,i2,i3,i4,i5,i6] = [[a,b,c,d,e,f] |
                                   let la = get4DigitNumbers i1,
                                   a <- la,
