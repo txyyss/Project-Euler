@@ -33,11 +33,12 @@ nextTuple (a,b,c,d,e) = (newA, tB `div` comD, c, tD `div` comD, tE `div` comD)
         tE = b * b * c - d * d
         comD = gcd tD $ gcd tB tE
 
+findRepeat :: Int -> Int
 findRepeat n = helper [(intRoot, 1, n, (-intRoot), 1)]
   where intRoot = floor . sqrt $ fromIntegral n
-        helper ls@(x:xs) = addOrReturn $ elemIndex newX ls
+        helper ls@(x:_) = addOrReturn $ elemIndex newX ls
           where newX = nextTuple x
                 addOrReturn Nothing = helper (newX:ls)
                 addOrReturn (Just m) = m + 1
 
-result064 = length . filter odd .map findRepeat $ [1..10000] \\ (map (^2) [1..100])
+result064 = length . filter odd . map findRepeat $ [1..10000] \\ (map (^2) [1..100])
