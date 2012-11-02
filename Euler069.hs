@@ -20,10 +20,6 @@
 
 module Euler069 where
 
-import Data.List
-import Data.Ord
-import Data.Ratio
-
 minus :: Ord a => [a] -> [a] -> [a]
 minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
   LT -> x : minus xs ly
