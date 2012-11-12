@@ -15,13 +15,13 @@
 
 module Euler081 where
 
+minPathSum :: [[Int]] -> Int
 minPathSum (m:ms) = helper (scanl1 (+) m) ms
   where helper row [] = last row
         helper row (x:xs) = helper result xs
           where result = tail . scanl iterMin (head row) $ zip x lsPlus
                 lsPlus = zipWith (+) row x
                 iterMin a (b,c) = min (a+b) c
-                
 
 getMatrix :: String -> [[Int]]
 getMatrix = map (\x -> read $ "[" ++ x ++ "]") . lines
