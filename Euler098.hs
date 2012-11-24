@@ -56,6 +56,4 @@ getMaxSquare :: String -> Integer
 getMaxSquare xs = maximum $ map fst pairs ++ map snd pairs
   where pairs = concatMap judgePair $ tidyStrings $ read $ "[" ++ xs ++ "]"
 
-result098 = do
-  content <- readFile "data/words.txt"
-  print $ getMaxSquare content
+result098 = readFile "data/words.txt" >>= print . getMaxSquare
