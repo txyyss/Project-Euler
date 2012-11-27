@@ -17,6 +17,7 @@ import Data.List
 
 fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 
+isBothPandigital :: Integer -> Bool
 isBothPandigital n = last9 == "123456789" && first9 == "123456789"
   where nRest = n `mod` 1000000000
         last9 = sort (show nRest)
