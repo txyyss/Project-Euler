@@ -47,7 +47,7 @@ satisfyMore [a1,a2,a3,a4,a5,a6,a7] = a1 + a2 > a7 &&
                                      a1 + a2 + a3 + a4 > a7 + a6 + a5
 
 noEqualSubset :: [Int] -> Bool
-noEqualSubset ls = noEqualList $ sortBy (comparing sum) $ subsequences ls
+noEqualSubset = noEqualList . sortBy (comparing sum) . subsequences
   where noEqualList [x,y] = helper x y
         noEqualList (x:y:ys)
           | helper x y = noEqualList (y:ys)
