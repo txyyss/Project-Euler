@@ -17,10 +17,9 @@ import Data.List
 
 fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 
-isBothPandigital n =
-  let nRest = n `mod` 1000000000
-      last9 = sort (show nRest)
-      first9 = sort $ take 9 $ show n
-  in last9 == "123456789" && first9 == "123456789"
- 
+isBothPandigital n = last9 == "123456789" && first9 == "123456789"
+  where nRest = n `mod` 1000000000
+        last9 = sort (show nRest)
+        first9 = sort $ take 9 $ show n
+
 result104 = snd $ head $ filter (isBothPandigital . fst) (zip fibs [1..])
