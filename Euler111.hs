@@ -61,6 +61,7 @@ primes = 2 : primes'
       | otherwise =     sieve (xs `minus` [q, q+2*p..]) (head t^2) t
 
 isPrime :: Integer -> Bool
+isPrime 1 = False
 isPrime n = helper primes
   where helper (x:xs)
           | x * x > n = True
