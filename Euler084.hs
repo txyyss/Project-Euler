@@ -79,6 +79,8 @@ import Data.Array
 import Data.List
 import System.Random
 import Data.Ord
+import Control.Arrow ((&&&))
+
 squares :: Array Int String
 squares = listArray (0,39) ["GO","A1","CC1","A2","T1","R1","B1","CH1","B2","B3",
                             "JAIL","C1","U1","C2","C3","R2","D1","CC2","D2","D3",
@@ -119,13 +121,13 @@ fall (index, cards@(c:cs)) = helper squareName
         nextU 36 = 12
 
 stepMonopoly :: (Int,Int,[Int],[Int]) -> (Int,Int,[Int],[Int])
-stepMonopoly (numOfDbls, sqrIdx, (dice1:dice2:otherDices), cs)
+stepMonopoly (numOfDbls, sqrIdx, dice1:dice2:otherDices, cs)
   | numOfDbls == 2 && dice1==dice2 = (0,10,otherDices,cs)
   | otherwise = (newNumOfDbls,newSqrIdx,otherDices,newCards)
   where newNumOfDbls = if dice1==dice2 then numOfDbls + 1 else 0
         normalNextIdx = (sqrIdx + dice1 + dice2) `mod` 40
         (newSqrIdx, newCards) = fall (normalNextIdx, cs)  
 
-best3Under n = take 3 . reverse . map fst . sortBy (comparing snd) . map (\x->(head x, length x)) . group . sort . take n . map (\(_,y,_,_)->y) $ iterate stepMonopoly (0,0,diceResult,cardResult)
+best3Under n = take 3 . reverse . map fst . sortBy (comparing snd) . map (head &&& length) . group . sort . take n . map (\(_,y,_,_)->y) $ iterate stepMonopoly (0,0,diceResult,cardResult)
 
 result084 = best3Under 400000

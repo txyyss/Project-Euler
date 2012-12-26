@@ -16,7 +16,7 @@
 module Euler046 where
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -47,6 +47,6 @@ oddPrimesTo n = helper [] $ tail primes
 
 canPass n
   | isPrime n = True
-  | otherwise = or . map (\m -> isPerfect ((n-m) `div` 2)) $ oddPrimesTo n
+  | otherwise = any (\m -> isPerfect ((n-m) `div` 2)) $ oddPrimesTo n
 
 result046 = head $ filter (not . canPass) [3,5..]

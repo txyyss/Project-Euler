@@ -21,7 +21,7 @@ import Data.Ord
 import Data.Ratio
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -57,4 +57,4 @@ isPermutation (x, y) = sx == sy
         helper = sort . show
 
 
-result070 = minimumBy (comparing snd) . map (\(x,y) -> (x, (fromIntegral x % fromIntegral y))) . filter isPermutation . assocs . eulerTotients $ 10^7
+result070 = minimumBy (comparing snd) . map (\(x,y) -> (x, fromIntegral x % fromIntegral y)) . filter isPermutation . assocs . eulerTotients $ 10^7

@@ -31,6 +31,6 @@ module Euler065 where
 import Data.Ratio
 import Data.Char
 
-nThE n = foldr1 (\x y-> x + 1/y) $ 2:(take (n-1) $ concatMap (\k->[1 % 1,(2 * k) % 1,1 % 1]) [1..])
+nThE n = foldr1 (\x y-> x + 1/y) $ 2:take (n-1) (concatMap (\k->[1 % 1,(2 * k) % 1,1 % 1]) [1..])
 
 result065 = sum . map digitToInt . show . numerator $ nThE 100

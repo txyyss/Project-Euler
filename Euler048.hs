@@ -5,4 +5,4 @@
 
 module Euler048 where
 
-result048 = (sum [i^i | i <- [1..1000]]) `mod` 10^10
+result048 = sum [i^i | i <- [1..1000]] `mod` 10^10

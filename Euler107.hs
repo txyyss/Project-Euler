@@ -31,14 +31,14 @@ kruskal ls = helper 0 ls treeSet
         totalSum = sum $ map snd ls
         treeSet = Set.fromList (map (Set.singleton . fst) edgePair ++ map (Set.singleton . snd) edgePair)
         helper spanSum lst aSet
-          | lst == [] || Set.size aSet == 1 = totalSum - spanSum
+          | null lst || Set.size aSet == 1 = totalSum - spanSum
           | otherwise = helper (spanSum + possibleWeight) (tail lst) newSet
           where ((v1, v2), weight) = head lst
                 v1Set = Set.filter (Set.member v1) aSet
                 v2Set = Set.filter (Set.member v2) aSet
                 v1v2Same = v1Set == v2Set
                 possibleWeight = if v1v2Same then 0 else weight
-                v1v2Union = Set.union v1Set v2Set
+                v1v2Union = v1Set `Set.union` v2Set
                 v1v2Merge = Set.unions $ Set.toList v1v2Union
                 newSet = if v1v2Same
                          then aSet

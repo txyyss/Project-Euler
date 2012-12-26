@@ -34,13 +34,13 @@ module Euler090 where
 
 combinations :: Int -> [a] -> [[a]]
 combinations _ [] = []
-combinations 1 xs = map (\x -> [x]) xs
-combinations n (x:xs) = combinations n xs ++ (map (x:) $ combinations (n-1) xs)
+combinations 1 xs = map (:[]) xs
+combinations n (x:xs) = combinations n xs ++ map (x:) (combinations (n-1) xs)
 
 isInDice :: Int -> [Int] -> Bool
 isInDice 6 a = elem 6 a || elem 9 a
 isInDice 9 a = elem 6 a || elem 9 a
-isInDice i a = elem i a
+isInDice i a = i `elem` a
 
 canDisplay :: [Int] -> [Int] -> Int -> Bool
 canDisplay a b i = (isInDice i1 a && isInDice i2 b)  || (isInDice i1 b && isInDice i2 a)

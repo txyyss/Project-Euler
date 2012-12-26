@@ -45,6 +45,7 @@
 module Euler101 where
 
 import Data.Ratio
+import Control.Arrow ((&&&))
 
 u :: Integer -> Integer
 u n = last $ take 6 $ iterate (\x -> (n * x - 1) * n + 1) 1
@@ -52,11 +53,11 @@ u n = last $ take 6 $ iterate (\x -> (n * x - 1) * n + 1) 1
 firstIncorrectTerms :: [Integer] -> Integer
 firstIncorrectTerms ls = numerator $ sum $ map helper [1..lsCount]
   where lsCount = fromIntegral $ length ls
-        helper 1 = (head ls) % 1
+        helper 1 = head ls % 1
         helper k = sum $ map lagrangeTerm [1..k]
           where lagrangeTerm j = (ls !! index) % 1 * s
-                  where s = foldl1 (*) $ map (\(x,y) -> x % y) $
-                            filter ((/=0) . snd) $ zip (map ((k+1)-) [1..k]) $ map (j-) [1..k]
+                  where s = product $ map (uncurry (%)) $
+                            filter ((/=0) . snd) $ map (((k + 1) -) &&& (j -)) [1 .. k]
                         index = fromIntegral (j - 1)
 
 result101 = firstIncorrectTerms $ map u [1..10]

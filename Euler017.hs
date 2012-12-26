@@ -17,8 +17,8 @@ intToEnglish n
   | n >= 1000 = "onethousand"
   | n >= 100 = if n `mod` 100 == 0 then hundredPart n else concat [hundredPart n, "and", intToEnglish (n `mod` 100)]
   | n < 20 = under20 !! n
-  | otherwise = if n `mod` 10 == 0 then tenPart n else concat [tenPart n, intToEnglish (n `mod` 10)]
-  where hundredPart m = concat [under20 !! (m `div` 100), "hundred"]
+  | otherwise = if n `mod` 10 == 0 then tenPart n else tenPart n ++ intToEnglish (n `mod` 10)
+  where hundredPart m = (under20 !! (m `div` 100)) ++ "hundred"
         tenPart m = above20 !! (m `div` 10)
         under20 = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
                    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]

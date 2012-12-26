@@ -11,7 +11,7 @@ module Euler035 where
 import Data.Char (digitToInt)
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -37,9 +37,9 @@ rotations :: [a] -> [[a]]
 rotations l = helper [] len (cycle l)
   where len = length l
         helper result 0 _ = result
-        helper result n cs = helper ((take len cs):result) (n - 1) (tail cs)
+        helper result n cs = helper (take len cs:result) (n - 1) (tail cs)
 
 isCircularPrime :: Int -> Bool
-isCircularPrime n = and . map (isPrime . (foldl1 (\x y -> 10 * x + y)) . map digitToInt) . rotations $ show n
+isCircularPrime n = all (isPrime . foldl1 (\x y -> 10 * x + y) . map digitToInt) . rotations $ show n
 
 result035 = length $ filter isCircularPrime primes

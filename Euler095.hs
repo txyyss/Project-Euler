@@ -26,7 +26,7 @@ import Data.Ord
 -- http://en.wikipedia.org/wiki/Divisor_function
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys

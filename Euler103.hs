@@ -38,8 +38,8 @@ import Data.Ord
 
 combinations :: [a] -> Int -> [[a]]
 combinations [] _ = []
-combinations xs 1 = map (\x -> [x]) xs
-combinations (x:xs) n = combinations xs n ++ (map (x:) $ combinations xs (n-1))
+combinations xs 1 = map (:[]) xs
+combinations (x:xs) n = combinations xs n ++ map (x:) (combinations xs (n-1))
 
 satisfyMore :: (Num a, Ord a) => [a] -> Bool
 satisfyMore [a1,a2,a3,a4,a5,a6,a7] = a1 + a2 > a7 &&

@@ -31,8 +31,8 @@ import Data.Ord
 
 combinations :: Int -> [a] -> [[a]]
 combinations _ [] = []
-combinations 1 xs = map (\x -> [x]) xs
-combinations n (x:xs) = combinations n xs ++ (map (x:) $ combinations (n-1) xs)
+combinations 1 xs = map (:[]) xs
+combinations n (x:xs) = combinations n xs ++ map (x:) (combinations (n-1) xs)
 
 genAllPossible :: [Int] -> Set.Set (Ratio Int)
 genAllPossible ls = Set.fromList $ catMaybes $ concat [gen5 xs op1 op2 op3 | xs<-perm,op1<-ops,op2<-ops,op3<-ops]

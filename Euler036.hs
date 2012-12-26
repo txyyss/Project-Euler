@@ -16,11 +16,11 @@ binaryPresent :: Int -> String
 binaryPresent n = showIntAtBase 2 intToDigit n ""
 
 binaryPalindromic :: Int -> Bool
-binaryPalindromic n = (reverse b) == b
+binaryPalindromic n = reverse b == b
   where b = binaryPresent n
 
 normalPalindromic :: Int -> Bool
-normalPalindromic n = (reverse o) == o
+normalPalindromic n = reverse o == o
   where o = show n
 
-result036 = sum $ filter (\x -> (binaryPalindromic x) && (normalPalindromic x)) [1..1000000]
+result036 = sum $ filter (\x -> binaryPalindromic x && normalPalindromic x) [1..1000000]

@@ -12,6 +12,8 @@
 
 module Euler044 where
 
+import Control.Arrow ((&&&))
+
 isPentagonal :: Integral a => a -> Bool
 isPentagonal n = p && (root + 1) `mod` 6 == 0
   where (p, root) = isPerfect (24 * n + 1)
@@ -23,9 +25,9 @@ pentagonalNum n = n * (3 * n - 1) `div` 2
 
 isWanted :: [Int] -> Int
 isWanted l
-  | r == [] = isWanted (next:l)
+  | null r = isWanted (next:l)
   | otherwise = snd $ head r
-  where r = filter (\(x, y) -> isPentagonal x && isPentagonal y) $ zip (map (next +) l) (map (next-) l)
+  where r = filter (\(x, y) -> isPentagonal x && isPentagonal y) $ map ((next +) &&& (next -)) l
         next = pentagonalNum len
         len = 1 + length l
 

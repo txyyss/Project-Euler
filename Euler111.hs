@@ -46,7 +46,7 @@ import Data.Function
 import Data.Ord
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -72,10 +72,10 @@ generateNums :: Int -> Integer -> [(Int, [Integer])]
 generateNums n d = [(size, map (foldl1 (\x y -> x * 10 + y)) $ sequence candidate) |
                     possible <- replicateM n [delete d [0..9], [d]],
                     let size = length $ filter ((==1).length) possible,
-                    let candidate = (delete 0 $ head possible) : tail possible]
+                    let candidate = delete 0 (head possible) : tail possible]
 
 maxRepeatedPrimes :: Int -> Integer -> [Integer]
-maxRepeatedPrimes n = head . filter (not.null) . map (filter isPrime . (concatMap snd)) .
+maxRepeatedPrimes n = head . filter (not.null) . map (filter isPrime . concatMap snd) .
                       groupBy ((==) `on` fst) . reverse . sortBy (comparing fst) . generateNums n
 
 result111 = sum $ map (sum . maxRepeatedPrimes 10) [0..9]

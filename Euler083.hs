@@ -24,7 +24,7 @@ import Data.Ord
 import Data.List
 
 getMatrix :: String -> Array (Int,Int) Int
-getMatrix content = listArray ((1,1),((length matrix), (length $ head matrix))) $ concat matrix
+getMatrix content = listArray ((1,1),(length matrix, length $ head matrix)) $ concat matrix
   where matrix = map (\x -> read $ "[" ++ x ++ "]") $ lines content
 
 neighbourIndexes :: ((Int,Int),(Int,Int)) -> (Int,Int) -> [(Int,Int)]
@@ -34,7 +34,7 @@ neighbourIndexes ((rMin,cMin),(rMax,cMax)) (x,y) =
 -- findMinSum ::  (Int,Int) -> (Int,Int) -> Array (Int,Int) Int -> Int
 findMinSum src tgt wMatrix = helper initMatrix initQ
   where bOfMa@((rMin,cMin),(rMax,cMax)) = bounds wMatrix
-        initMatrix = (listArray bOfMa $ repeat (10^6)) // [(src, wMatrix ! src)]
+        initMatrix = listArray bOfMa (repeat (10^6)) // [(src, wMatrix ! src)]
         initQ = Set.fromList [(x,y) | x <-[rMin..rMax], y<-[cMin..cMax]]
         helper distanceMatrix qSet
           | Set.notMember tgt qSet = distanceMatrix ! tgt

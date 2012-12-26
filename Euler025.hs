@@ -27,6 +27,6 @@ module Euler025 where
 fib :: Int -> (Integer, Integer) -> Int
 fib ind (a, b)
   | length (show b) == 1000 = ind
-  | otherwise = fib (ind + 1) (b, (a + b))
+  | otherwise = fib (ind + 1) (b, a + b)
 
 result025 = fib 2 (1, 1)

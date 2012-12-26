@@ -56,8 +56,8 @@ getMax from to currentMax
   | otherwise = getMax (from + 1) to $ map choose [0..(from + 1)]
   where wait = input !! (from + 1)
         choose i
-          | i == 0 = head currentMax + (head wait)
-          | i == (from + 1) = last currentMax + (last wait)
+          | i == 0 = head currentMax + head wait
+          | i == (from + 1) = last currentMax + last wait
           | otherwise = max (currentMax !! (i-1)) (currentMax !! i) + (wait !! i)
 
 result018 = maximum $ getMax 0 (length input - 1) (head input)

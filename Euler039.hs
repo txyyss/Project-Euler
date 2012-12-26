@@ -12,14 +12,15 @@ module Euler039 where
 
 import Data.List (sort, group, maximumBy)
 import Data.Ord (comparing)
+import Control.Arrow ((&&&))
 
 mnk = [(m, n, k) | n <- [1..32], m <- [(n+1)..32], k <- [1..83], m * (m + n) * k <= 500]
 
-triplet (m, n, k) = ((min a b), (max a b), c) 
+triplet (m, n, k) = (min a b, max a b, c) 
   where a = k * (m^2 - n^2)
         b = k * 2 * m * n
         c = k * (m^2 + n^2)
 
-allPerimeter = sort . map (\(x,y,z) -> x + y + z) . map head . group . sort $ map triplet mnk
+allPerimeter = sort . map ((\ (x, y, z) -> x + y + z) . head) . group . sort $ map triplet mnk
 
-result039 = maximumBy (comparing snd) $ map (\x -> (head x, length x)) . group $ allPerimeter
+result039 = maximumBy (comparing snd) $ map (head &&& length) . group $ allPerimeter

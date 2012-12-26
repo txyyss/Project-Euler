@@ -24,14 +24,14 @@ import Data.Maybe
 
 combinations :: [a] -> Int -> [[a]]
 combinations [] _ = []
-combinations xs 1 = map (\x -> [x]) xs
-combinations (x:xs) n = combinations xs n ++ (map (x:) $ combinations xs (n-1))
+combinations xs 1 = map (:[]) xs
+combinations (x:xs) n = combinations xs n ++ map (x:) (combinations xs (n-1))
 
 enumerate :: Int -> [[Int]]
 enumerate = concatMap permutations . combinations [0..9]
 
 tidyStrings :: [String] -> [(String, String)]
-tidyStrings ls = map (\[x,y]-> (x,y)) $ concatMap (flip combinations 2) candidate
+tidyStrings ls = map (\[x,y]-> (x,y)) $ concatMap (`combinations` 2) candidate
   where candidate = filter ((>=2).length) . groupBy ((==) `on` sort) . sortBy (compare `on` sort) $ ls
 
 isSquare :: Integer -> Bool

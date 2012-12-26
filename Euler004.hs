@@ -24,7 +24,7 @@ findMax :: Int -> Int -> [Int] -> Int
 findMax currMax a [] = currMax
 findMax currMax a (b:bs)
   | pro < currMax = currMax
-  | isPalindrome pro = if (pro > currMax) then pro else currMax
+  | isPalindrome pro = if pro > currMax then pro else currMax
   | otherwise = findMax currMax a bs
   where pro = a * b
 

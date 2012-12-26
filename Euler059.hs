@@ -50,7 +50,7 @@ getPlain = maximumBy (comparing (length . filter isLetter))
 splitStr :: String -> [String]
 splitStr = foldr helper [[]]
   where helper ',' existed = []:existed
-        helper curr (x:xs) = ((curr:x):xs)
+        helper curr (x:xs) = (curr:x):xs
 
 result059 = do
   content <- readFile "data/cipher1.txt"

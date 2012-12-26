@@ -17,7 +17,7 @@
 module Euler047 where
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -31,7 +31,7 @@ primes = 2 : primes'
       | otherwise =     sieve (xs `minus` [q, q+2*p..]) (head t^2) t
 
 primesTo :: Int -> [Int]
-primesTo n = helper [] $ primes
+primesTo n = helper [] primes
   where helper existed (x:xs)
           | x <= n = helper (x:existed) xs
           | otherwise = existed
@@ -39,7 +39,7 @@ primesTo n = helper [] $ primes
 findFactors :: Int -> [Int]
 findFactors x = testDiv [] x $ primesTo (floor . sqrt $ fromIntegral x)
   where testDiv r 1 [] = r
-        testDiv r y [] = (y:r)
+        testDiv r y [] = y:r
         testDiv r target (y:ys)
           | target `mod` y == 0 = testDiv (y:r) (remove target y) ys
           | otherwise = testDiv r target ys

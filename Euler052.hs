@@ -9,9 +9,9 @@ module Euler052 where
 import Data.List (sort)
 
 theSameDigits :: Int -> Int -> Bool
-theSameDigits n m = (sort $ show n) == (sort $ show m)
+theSameDigits n m = sort (show n) == sort (show m)
 
 isWanted :: Int -> Bool
-isWanted n = and . map (theSameDigits n) $ map (*n) [2..6]
+isWanted n = all (theSameDigits n) $ map (*n) [2..6]
 
 result052 = head $ filter isWanted [1..]

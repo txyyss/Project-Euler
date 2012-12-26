@@ -14,12 +14,12 @@ isMagicPentagon ls = all (head sumList ==) $ tail sumList
   where sumList = map sum $ partitionPentagon ls
 
 uniqueRep :: [Int] -> [Int]
-uniqueRep ls = (helper minIndex fstHalf) ++ (helper minIndex sndHalf)
+uniqueRep ls = helper minIndex fstHalf ++ helper minIndex sndHalf
   where fstHalf = take 5 ls
         sndHalf = drop 5 ls
         minNum = minimum fstHalf
         minIndex = elemIndex minNum fstHalf
-        helper Nothing = \x -> []
+        helper Nothing = const []
         helper (Just minIdx) = take 5 . drop minIdx . cycle
 
 convertToInteger :: [Int] -> Integer

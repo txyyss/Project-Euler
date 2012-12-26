@@ -23,7 +23,7 @@
 module Euler012 where
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -55,6 +55,6 @@ countDivisorsOfTriIndex n
   | odd n = (countOfDivisors !! n) * (countOfDivisors !! ((n+1) `div` 2))
   | otherwise = (countOfDivisors !! (n `div` 2)) * (countOfDivisors !! (n+1))
 
-index = fst $ head $ filter (\x -> (snd x) > 500) $ map (\x -> (x, countDivisorsOfTriIndex x)) [1..]
+index = fst $ head $ filter (\x -> snd x > 500) $ map (\x -> (x, countDivisorsOfTriIndex x)) [1..]
 
 result012 = index * (index + 1) `div` 2

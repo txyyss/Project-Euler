@@ -21,7 +21,7 @@ module Euler110 where
 import Data.List
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -40,7 +40,7 @@ series _ 0 =[[]]
 series xs n =[x:ps | x <- xs, ps <- series [0..x] (n-1)]
 
 leastN :: Int -> Integer -> Integer
-leastN count limit = minimum . map (product . map (uncurry (^)) . zip (take count primes)) $
+leastN count limit = minimum . map (product . zipWith (^) (take count primes)) $
                      filter ((>limit) . (`div` 2) . (+1) . product . map ((+1).(*2))) $ series [1..3] count
 
 result110 = leastN 15 4000000

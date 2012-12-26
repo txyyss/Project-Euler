@@ -71,11 +71,11 @@ isFlush h = and [a == b |  a <- allSuits, b <- allSuits]
   where allSuits = map suit h
 
 isStraight :: [Card] -> Bool
-isStraight h = and $ map (\(a,b) -> b == succ a) $ zip (init s) (tail s)
+isStraight h = all (\(a, b) -> b == succ a) (zip (init s) (tail s))
   where s = sort $ map rank h
         
 isRoyalFlush :: [Card] -> Bool
-isRoyalFlush h = ([Ten,Jack,Queen,King,Ace] == (sort $ map rank h)) && isFlush h
+isRoyalFlush h = ([Ten,Jack,Queen,King,Ace] == sort (map rank h)) && isFlush h
 
 isStraightFlush :: [Card] -> Bool
 isStraightFlush h = isFlush h && isStraight h
@@ -89,7 +89,7 @@ isSameKind :: Int -> [Card] -> Bool
 isSameKind i = any (\(a,b) -> b==i) . sameKindNum
 
 isFullHouse :: [Card] -> Bool
-isFullHouse h = (helper 2) && (helper 3)
+isFullHouse h = helper 2 && helper 3
   where kindNum = sameKindNum h
         helper i = any (\(a,b)->b==i) kindNum
 
@@ -100,13 +100,13 @@ compareRank :: Ord a => [a] -> [a] -> Ordering
 compareRank r1 r2 = helper compareResult
   where sr1 = sort r1
         sr2 = sort r2
-        compareResult = filter (/= EQ) $ map (\(a,b)-> compare a b) $ zip sr1 sr2
+        compareResult = filter (/= EQ) $ zipWith compare sr1 sr2
         helper [] = EQ
         helper x = last x
 
 compareOrderedRank :: Ord a => [a] -> [a] -> Ordering
 compareOrderedRank r1 r2 = helper compareResult
-  where compareResult = filter (/= EQ) $ map (\(a,b)->compare a b) $ zip r1 r2
+  where compareResult = filter (/= EQ) $ zipWith compare r1 r2
         helper [] = EQ
         helper x = head x
 
@@ -121,8 +121,8 @@ filterRestRank i rs = prefered ++ rest
         rest = getDistinctRanks rs2
         
 judgePattern :: [Card] -> [Bool]
-judgePattern = swing map [isRoyalFlush, isStraightFlush, (isSameKind 4), isFullHouse, isFlush,
-                          isStraight, (isSameKind 3), isTwoPairs, (isSameKind 2)]
+judgePattern = swing map [isRoyalFlush, isStraightFlush, isSameKind 4, isFullHouse, isFlush,
+                          isStraight, isSameKind 3, isTwoPairs, isSameKind 2]
   where swing = flip . (. flip id)
 
 compareCard :: ([Card], [Card]) -> Ordering

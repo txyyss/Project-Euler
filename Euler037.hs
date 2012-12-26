@@ -14,7 +14,7 @@ import Data.List (union, inits, tails)
 import Data.Char (digitToInt)
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -38,8 +38,8 @@ isPrime n = helper primes
 isTruncatable :: Int -> Bool
 isTruncatable n 
   | n < 10 = False
-  | otherwise = and $ map (isPrime . (foldl1 (\x y -> x * 10 + y)) . map digitToInt) $ 
-                union (init . tail . inits $ show n) (init . tail . tails $ show n)
+  | otherwise = all (isPrime . foldl1 (\x y -> x * 10 + y) . map digitToInt)  
+                ((init . tail . inits $ show n) `union` (init . tail . tails $ show n))
 
 findTruncatable :: Int -> [Int]
 findTruncatable count = helper [] 0 primes

@@ -19,10 +19,10 @@ split :: String -> [String]
 split = foldr splitHelper [[]]
   where splitHelper ',' existed = []:existed
         splitHelper '"' existed = existed
-        splitHelper curr (x:xs) = ((curr:x) : xs)
+        splitHelper curr (x:xs) = curr:x:xs
 
 getScores :: [String] -> [Int]
-getScores = (zipWith (*) [1..]) . map (sum . (map alphaValue))
+getScores = zipWith (*) [1..] . map (sum . map alphaValue)
   where alphaValue x = ord (toUpper x) - ord 'A' + 1
 
 result022 = do

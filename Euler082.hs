@@ -23,7 +23,7 @@ getMatrix :: String -> [[Int]]
 getMatrix = transpose . map (\x -> read $ "[" ++ x ++ "]") . lines
 
 minPathSum :: [[Int]] -> Int
-minPathSum ls@(m:_) = helper (replicate (length m) 0) $ ls
+minPathSum ls@(m:_) = helper (replicate (length m) 0) ls
   where helper row [] = minimum row
         helper row (x:xs) = helper result xs
           where lsPlus = zipWith (+) row x

@@ -26,18 +26,18 @@ properDivisors :: Int -> [Int]
 properDivisors n = tryDivide [1] [2..(floor $ sqrt $ fromIntegral n)]
   where tryDivide currRslt [] = currRslt
         tryDivide currRslt (x:xs)
-          | n `mod` x == 0 = if (x == remain && x * remain == n) 
+          | n `mod` x == 0 = if x == remain && x * remain == n
                              then tryDivide (x:currRslt) xs 
                              else tryDivide (x:remain:currRslt) xs
           | otherwise = tryDivide currRslt xs
           where remain = n `div` x
 
 abundantNum :: Int -> Bool
-abundantNum n = n < (sum $ properDivisors n)
+abundantNum n = n < sum (properDivisors n)
 
 abundants = listArray (1, 28123) $ map abundantNum [1..28123]
 
 notSumOfAbundants :: Int -> Bool
-notSumOfAbundants m = not $ or $ map (\(a, b) -> abundants ! a && abundants ! b) [(x, m-x) | x <- [1.. (m `div` 2)]]
+notSumOfAbundants m = not $ any (\(a, b) -> abundants ! a && abundants ! b) [(x, m-x) | x <- [1.. (m `div` 2)]]
 
 result023 = sum $ filter notSumOfAbundants [1..28123]

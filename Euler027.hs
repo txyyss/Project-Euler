@@ -28,7 +28,7 @@ import Data.List (maximumBy)
 import Data.Ord (comparing)
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -57,7 +57,7 @@ primesTo n = helper [] primes
           | otherwise = helper (x:existed) xs
 
 consecutivePrimeLength :: [Int] -> Int
-consecutivePrimeLength xs = helper 0 xs
+consecutivePrimeLength = helper 0
   where helper curr [] = curr
         helper curr (y:ys)
           | isPrime y = helper (curr + 1) ys
@@ -71,5 +71,5 @@ lenOfPrimes :: (Int, Int) -> Int
 lenOfPrimes x = consecutivePrimeLength $ map (quadratic x) [0..]
   where quadratic (a, b) n = n * (n + a) + b
 
-result027 = (fst maxUnder1000) * (snd maxUnder1000)
+result027 = uncurry (*) maxUnder1000
   where maxUnder1000 = fst $ maximumBy (comparing snd) $ zip abCandidates (map lenOfPrimes abCandidates)

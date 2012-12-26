@@ -17,7 +17,7 @@ module Euler051 where
 import Data.Char (digitToInt)
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of 
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -58,13 +58,13 @@ segment m ns = segHelper [[ns]] [] [] ns
 
 test :: ([Int], [Int]) -> [[Int]]
 test (a, b) = map (\x -> map (\n -> foldl (composeNum n) numA x) [start..9]) segB
-  where numA = if a == [] then 0 else foldl1 helper a
+  where numA = if null a then 0 else foldl1 helper a
         start = head b
         segB = segment start (tail b)
-        composeNum n preNum after = foldl helper (helper preNum n) after
+        composeNum n preNum = foldl helper (helper preNum n)
         helper x y = x * 10 + y
 
 isWanted :: [Int] -> Bool
-isWanted = or . map (\x -> length x >= 8) . map (filter isPrime) . concatMap test . splitNum
+isWanted = any ((\ x -> length x >= 8) . filter isPrime) . concatMap test . splitNum
 
 result051 = foldl1 (\x y -> x * 10 + y) . head . filter isWanted  . filter (any (<=2) . init) $ map splitToDigits primes

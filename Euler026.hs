@@ -24,7 +24,7 @@ import Data.List (maximumBy)
 import Data.Ord (comparing)
 
 indexOf :: Eq a => a -> [a] -> Int
-indexOf x xs = indexHelper 0 xs
+indexOf x = indexHelper 0
   where indexHelper ind [] = ind
         indexHelper ind (y:ys)
           | y == x = ind

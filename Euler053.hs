@@ -17,7 +17,7 @@
 module Euler053 where
 
 binomial :: Integral a => a -> a -> a
-binomial n r = product [(n-r+1)..n] `div` (product [2..r])
+binomial n r = product [(n-r+1)..n] `div` product [2..r]
 
 exceed :: Integral a => a -> Int
 exceed n = length . filter (>1000000) $ map (binomial n) [0..n]

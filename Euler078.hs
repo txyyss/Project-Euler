@@ -30,7 +30,7 @@ partitions limit = result
 findMod :: Integer -> Int
 findMod m = helper 1
   where helper n
-          | lst == [] = helper (2 * n)
+          | null lst = helper (2 * n)
           | otherwise = head lst
           where lst = filter (\x -> (partsCount ! x) `mod` m == 0) [1..n] 
                 partsCount = partitions n

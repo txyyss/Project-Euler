@@ -31,4 +31,4 @@ countWays m n = cache ! n - 1
           | x < m = 1
           | otherwise = 1 + sum [cache ! (x-startPos-m) | startPos <- [0..(x-m)]]
 
-result116 = sum $ map (flip countWays 50) [2..4]
+result116 = sum $ map (`countWays` 50) [2..4]

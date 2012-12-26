@@ -30,11 +30,11 @@ import Data.Array
 import Data.Char
 
 factorial :: Array Int Int
-factorial = listArray (0,9) (1:(scanl1 (*) [1..9]))
+factorial = listArray (0,9) (1:scanl1 (*) [1..9])
 
 repeatCount :: Int -> Int
 repeatCount n = helper [n] 1
-  where next = sum . map (factorial!) . map digitToInt . show
+  where next = sum . map ((factorial !) . digitToInt) . show
         helper ls@(x:_) len
           | nextX `elem` ls = len
           | otherwise = helper (nextX:ls) (len+1)

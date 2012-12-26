@@ -18,7 +18,7 @@ count = listArray (1, 10) $ scanl1 (*) [1..10]
 
 permutation :: Int -> [Int]
 permutation order = permute [0..9] order []
-  where permute [x] _ existed = reverse $ (x:existed)
+  where permute [x] _ existed = reverse (x:existed)
         permute remain n existed = permute (delete first remain) (n `mod` (count ! len)) (first:existed)
           where len = length remain - 1
                 first = remain !! (n `div` (count ! len))

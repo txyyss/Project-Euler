@@ -13,4 +13,4 @@ sumDivisibleBy :: Integral a => a -> a -> a
 sumDivisibleBy n upperLimit = n * p * (p+1) `div` 2
   where p = upperLimit `div` n
 
-result001' = (sumDivisibleBy 3 999) + (sumDivisibleBy 5 999) - (sumDivisibleBy 15 999)
+result001' = sumDivisibleBy 3 999 + sumDivisibleBy 5 999 - sumDivisibleBy 15 999

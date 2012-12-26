@@ -28,27 +28,28 @@ module Euler066 where
 import Data.List
 import Data.Ord
 import Data.Ratio
+import Control.Arrow ((&&&))
 
 nextTuple :: (Int, Int, Int, Int, Int) -> (Int, Int, Int, Int, Int)
 nextTuple (a,b,c,d,e) = (newA, tB `div` comD, c, tD `div` comD, tE `div` comD)
-  where newA = floor $ (fromIntegral tB * (sqrt $ fromIntegral c) - fromIntegral (e * d)) / (fromIntegral tE)
+  where newA = floor $ (fromIntegral tB * sqrt (fromIntegral c) - fromIntegral (e * d)) / fromIntegral tE
         tB = e * b
         tD = (-e) * d - newA * tE
         tE = b * b * c - d * d
         comD = gcd tD $ gcd tB tE
 
 contFrac :: Int -> [Int]
-contFrac n = intRoot : (concatMap (\x->segment) $ repeat 1)
+contFrac n = intRoot : concatMap (const segment) (repeat 1)
   where intRoot = floor . sqrt $ fromIntegral n
-        segment = helper [(intRoot, 1, n, (-intRoot), 1)]
+        segment = helper [(intRoot, 1, n, -intRoot, 1)]
         helper ls@(x:_)
-          | elem newX ls = reverse . init $ map (\(x,_,_,_,_)->x) ls
+          | newX `elem` ls = reverse . init $ map (\(x,_,_,_,_)->x) ls
           | otherwise = helper (newX:ls)
           where newX = nextTuple x
                 addOrReturn False = helper (newX:ls)
 
 genApproxList :: Int -> [(Integer, Integer)]
-genApproxList n = map (\x -> (numerator x, denominator x)) $ map approxFract [1..]
+genApproxList n = map ((numerator &&& denominator) . approxFract) [1..]
   where conts = contFrac n
         approxFract m = foldr1 (\x y-> x + 1/y) . map (%1) $ map toInteger $ take m conts
 
@@ -60,4 +61,4 @@ solvePell n = helper solutions
           | otherwise = helper xs
 
 result066 = fst . maximumBy (comparing snd) . zip potential . map fst $ map solvePell potential
-  where potential = [1..1000] \\ (map (^2) [1..32])
+  where potential = [1..1000] \\ map (^2) [1..32]

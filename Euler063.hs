@@ -8,4 +8,4 @@ module Euler063 where
 
 import Data.List
 
-result063 = length . nub $ sort [nk | n<-[1..9], k <-[1..21], let nk = n^k, (length $ show nk) == k]
+result063 = length . nub $ sort [nk | n<-[1..9], k <-[1..21], let nk = n^k, length (show nk) == k]

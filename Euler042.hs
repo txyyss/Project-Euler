@@ -21,10 +21,10 @@ split :: String -> [String]
 split = foldr splitHelper [[]]
   where splitHelper ',' existed = []:existed
         splitHelper '"' existed = existed
-        splitHelper curr (x:xs) = ((curr:x) : xs)
+        splitHelper curr (x:xs) = (curr:x) : xs
 
 getScore :: String -> Int
-getScore = sum . (map alphaValue)
+getScore = sum . map alphaValue
   where alphaValue x = ord (toUpper x) - ord 'A' + 1
 
 isTriangular :: Int -> Bool

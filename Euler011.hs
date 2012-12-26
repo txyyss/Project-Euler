@@ -56,12 +56,12 @@ height = 20
 
 valueOf :: Int -> Int -> Int
 valueOf x y
-  | and [x >= 0, y >= 0, x < width, y < height] == True = grid !! y !! x
+  | and [x >= 0, y >= 0, x < width, y < height] = grid !! y !! x
   | otherwise = 0
 
 adjacentProd :: (Int, Int) -> Int -> (Int, Int) -> Int
 adjacentProd _ 1 (x, y) = valueOf x y
-adjacentProd (dx, dy) count (x, y) = (valueOf x y) * adjacentProd (dx, dy) (count - 1) (x + dx, y + dy)
+adjacentProd (dx, dy) count (x, y) = valueOf x y * adjacentProd (dx, dy) (count - 1) (x + dx, y + dy)
 
 maxIn :: Int -> (Int, Int) -> Int
 maxIn count (dx, dy) = maximum $ map (adjacentProd (dx, dy) count) [(x, y) | x <- [0..(width - 1)], y <- [0..(height - 1)]]

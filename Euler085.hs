@@ -19,7 +19,7 @@ nearestM target n = result
         t = fromIntegral target / fromIntegral sumToN
         m = floor ((sqrt (8 * t + 1) - 1) / 2)
         candidates = map (\x -> (x, sumToN * sumTo x)) [m..]
-        neighbours = (head $ dropWhile ((<=target) . snd) candidates) : (takeWhile ((<=target) . snd) candidates)
+        neighbours = head (dropWhile ((<=target) . snd) candidates) : takeWhile ((<=target) . snd) candidates
         result = fst $ minimumBy (comparing (abs . (target-). snd)) neighbours
 
-result085 = (\(n,m) -> n * m) $ minimumBy (comparing (\(n,m) -> abs(2000000 - (sumTo n * sumTo m)))) $ map (\n -> (n, nearestM 2000000 n)) [1..2000]
+result085 = uncurry (*) $ minimumBy (comparing (\(n,m) -> abs(2000000 - (sumTo n * sumTo m)))) $ map (\n -> (n, nearestM 2000000 n)) [1..2000]

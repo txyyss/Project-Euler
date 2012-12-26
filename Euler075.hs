@@ -34,6 +34,6 @@ pythagoreanTriSum limit = concat [takeWhile (<=limit) [sum,sum*2..] |
                               let sum = 2 * m * (m + n),
                               sum <= limit
                               ]
-  where maxM = ceiling $ sqrt ((fromIntegral limit) / 2)
+  where maxM = ceiling $ sqrt (fromIntegral limit / 2)
 
 result075 = length . filter ((==1).length) . group . sort $ pythagoreanTriSum 1500000

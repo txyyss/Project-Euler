@@ -19,7 +19,7 @@ sum4 :: Int -> Int
 sum4 n = n * (4 * n - 6) + 6
 
 diagonalsSum :: Int -> Int
-diagonalsSum n = helper 0 n
+diagonalsSum = helper 0
   where helper curr 1 = curr + 1
         helper curr m = helper (curr + sum4 m) (m-2)
 

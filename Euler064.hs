@@ -27,18 +27,18 @@ import Data.List
 
 nextTuple :: (Int, Int, Int, Int, Int) -> (Int, Int, Int, Int, Int)
 nextTuple (a,b,c,d,e) = (newA, tB `div` comD, c, tD `div` comD, tE `div` comD)
-  where newA = floor $ (fromIntegral tB * (sqrt $ fromIntegral c) - fromIntegral (e * d)) / (fromIntegral tE)
+  where newA = floor $ (fromIntegral tB * sqrt (fromIntegral c) - fromIntegral (e * d)) / fromIntegral tE
         tB = e * b
         tD = (-e) * d - newA * tE
         tE = b * b * c - d * d
         comD = gcd tD $ gcd tB tE
 
 findRepeat :: Int -> Int
-findRepeat n = helper [(intRoot, 1, n, (-intRoot), 1)]
+findRepeat n = helper [(intRoot, 1, n, -intRoot, 1)]
   where intRoot = floor . sqrt $ fromIntegral n
         helper ls@(x:_) = addOrReturn $ elemIndex newX ls
           where newX = nextTuple x
                 addOrReturn Nothing = helper (newX:ls)
                 addOrReturn (Just m) = m + 1
 
-result064 = length . filter odd . map findRepeat $ [1..10000] \\ (map (^2) [1..100])
+result064 = length . filter odd . map findRepeat $ [1..10000] \\ map (^2) [1..100]

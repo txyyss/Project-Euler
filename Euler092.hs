@@ -19,7 +19,7 @@ import Data.Char
 import Data.Array
 
 nextSquareSum :: Int -> Int
-nextSquareSum = sum . map (^2) . map digitToInt . show
+nextSquareSum = sum . map ((^ 2) . digitToInt) . show
 
 arrive89 :: Int -> Array Int Bool
 arrive89 limit = result

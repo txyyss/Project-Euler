@@ -13,6 +13,6 @@ import Data.Char (digitToInt)
 count = listArray (0,9) $ scanl (*) 1 [1..9]
 
 facSum :: Int -> Int
-facSum = sum . map (\x-> count ! (digitToInt x)) . show
+facSum = sum . map (\x-> count ! digitToInt x) . show
 
 result034 = sum $ filter (\x -> x == facSum x) [10..10^6]

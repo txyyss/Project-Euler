@@ -88,7 +88,7 @@ chop n xs = take n xs : chop n (drop n xs)
 
 noDups :: Eq a => [a] -> Bool
 noDups [] = True
-noDups (x:xs) = not (elem x xs) && noDups xs
+noDups (x:xs) = notElem x xs && noDups xs
 
 -- Solver
 
@@ -150,7 +150,7 @@ search m
 expand :: Matrix Choices -> [Matrix Choices]
 expand m = [rows1 ++ [row1 ++ [c] : row2] ++ rows2 | c <- cs]
   where (rows1,row:rows2) = break (any (not . single)) m
-        (row1,cs:row2)    = break (not . single) row
+        (row1,cs:row2)    = span single row
 
 solveSudoku :: Grid -> [Grid]
 solveSudoku = search . prune . choices

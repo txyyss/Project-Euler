@@ -17,7 +17,7 @@ module Euler033 where
 
 isNonTrivialFraction :: (Int, Int) -> Bool
 isNonTrivialFraction xy@(x, y)
-  | (gcd x y) `mod` 10 == 0 = False
+  | gcd x y `mod` 10 == 0 = False
   | gcd x y == 1 = False
   | aX * rY == rX * aY = True
   | otherwise = False

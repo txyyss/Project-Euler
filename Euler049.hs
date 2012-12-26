@@ -16,7 +16,7 @@ import Data.List (sort, group, permutations)
 import Data.Char (digitToInt)
 
 minus :: Ord a => [a] -> [a] -> [a]
-minus lx@(x:xs) ly@(y:ys) = case (compare x y) of 
+minus lx@(x:xs) ly@(y:ys) = case compare x y of
   LT -> x : minus xs ly
   EQ ->     minus xs ys 
   GT ->     minus lx ys
@@ -39,8 +39,8 @@ isPrime n = helper primes
 
 permutateNum = map (foldl1 (\x y -> x * 10 + y)) . permutations . map digitToInt . show
 
-samePermutation n m = (norm n) == (norm m)
-  where norm x = sort $ show x
+samePermutation n m = norm n == norm m
+  where norm = sort . show
 
 judge n m = n < m && samePermutation (2 * m - n) n
 
@@ -50,7 +50,7 @@ reNorm xs = map (\x-> [head xs, x]) $ tail xs
 
 nextIsPrime (x:y:xs) = isPrime (2 * y - x)
 
-finalForm (x:y:xs) = (show x) ++ (show y) ++ (show (2 * y - x))
+finalForm (x:y:xs) = show x ++ show y ++ show (2 * y - x)
 
 result049 = map finalForm . filter nextIsPrime . concatMap reNorm . 
-            filter (and . (map isPrime)) . filter (\x -> length x >= 2) $ map findFor [1000..9999]
+            filter (all isPrime) . filter (\x -> length x >= 2) $ map findFor [1000..9999]

@@ -29,7 +29,7 @@ rawPos n
   where pos = findPos n
 
 digitAt :: Int -> Int
-digitAt n = digitToInt $ (show num) !! ((p-1) `mod` w) 
+digitAt n = digitToInt $ show num !! ((p-1) `mod` w) 
   where num = 10^(w-1) + (p - 1) `div` w
         (w, p) = rawPos n
 
