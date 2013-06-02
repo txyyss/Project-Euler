@@ -30,12 +30,13 @@ module Euler122 where
 
 -- http://oeis.org/A003313
 
+import Data.List
+import Data.Array
+import Control.Monad
+
 -- From TAOCP Volume 2, 3rd, P.465, the "power tree" method is optimum
 -- for k <> 77,154,233. The algorithm to generate power tree can be found
--- in P.481, Exercise 5.
-
-import Data.Array
-import Data.List
+-- in P.481, Exercise 5. I use this to get upper bound.
 
 traceBack :: Array Int Int -> Int -> [Int]
 traceBack arr i = helper arr [i]
@@ -66,5 +67,21 @@ genPowerTree bound = expandLayer initU initR 1
           | otherwise = expandLayer newU newR newFirst
           where (newU, newR, newFirst) = iterateExpand linkU linkR [] [] (reverse $ traceBack linkR first)
 
-result122 = map ((+ (-1)) . length . traceBack wholeTree) [1..200]
+upperBound = maximum $ map ((+ (-1)) . length . traceBack wholeTree) [1..200]
   where wholeTree = genPowerTree 200
+
+-- DFS
+-- reference: http://www.haskell.org/haskellwiki/Euler_problems/121_to_130#Problem_122
+
+depthAddChain d branch mins
+  | d == (upperBound + 1) = mins
+  | otherwise = foldl' step mins $ nub $ filter (> head branch) $ liftM2 (+) branch branch
+  where step da e
+          | e > 200 = da
+          | otherwise =
+            case compare (da ! e) d of
+              GT -> depthAddChain (d+1) (e:branch) $ da // [(e,d)]
+              EQ -> depthAddChain (d+1) (e:branch) da
+              LT -> da
+
+result122 = sum . elems $ depthAddChain 2 [2,1] $ listArray (1,200) $ 0:1: repeat (upperBound * 2)
