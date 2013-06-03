@@ -47,8 +47,8 @@ traceBack arr i = helper arr [i]
 
 genPowerTree :: Int -> Array Int Int
 genPowerTree bound = expandLayer initU initR 1
-  where initU = listArray (1, bound) (take bound $ repeat (-1)) // [(1,0)]
-        initR = listArray (1, bound) (take bound $ repeat 0)
+  where initU = listArray (1, bound) (replicate bound (-1)) // [(1,0)]
+        initR = listArray (1, bound) (replicate bound 0)
         isFull = all (>=0) . elems
         genNewLeaves arr i = filter (\x -> x <= bound && arr ! x < 0) $ map (+i) (traceBack arr i)
         expandNode linkU linkR i = (linkU // modiU, linkR // modiR, fstR, lastR)
@@ -57,7 +57,7 @@ genPowerTree bound = expandLayer initU initR 1
                 modiR = zip newNodes (tail newNodes)
                 fstR = if null newNodes then 0 else head newNodes
                 lastR = if null newNodes then 0 else last newNodes
-        iterateExpand linkU linkR fs ls [] = (linkU, linkR // (zip (init newLs) (tail newFs)), head newFs)
+        iterateExpand linkU linkR fs ls [] = (linkU, linkR // zip (init newLs) (tail newFs), head newFs)
           where newFs = filter (/= 0) $ reverse fs
                 newLs = filter (/= 0) $ reverse ls
         iterateExpand linkU linkR fs ls (x:xs) = iterateExpand newU newR (f:fs) (l:ls) xs
