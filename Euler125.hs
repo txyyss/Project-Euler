@@ -23,5 +23,5 @@ isPalindrome x = ori == rev
 sumsFrom :: Int -> Int -> [Int]
 sumsFrom hi i = takeWhile (<hi) . drop 1 . scanl1 (+) $ map (^2) [i..]
  
-result125 = fold (+) 0 . fromList . concat . map (filter isPalindrome . sumsFrom (10^8)) $ [1 .. limit]
+result125 = fold (+) 0 . fromList . concatMap (filter isPalindrome . sumsFrom (10^8)) $ [1 .. limit]
   where limit = floor . sqrt . fromIntegral $ (10^8 `div` 2)
