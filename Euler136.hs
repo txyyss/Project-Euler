@@ -100,7 +100,7 @@ countSingleSolution n = helper 0 primes
           | otherwise = helper (i + a + b + c) ps
           where a = if p < nd4 then 1 else 0
                 b = if p < nd16 then 1 else 0
-                c = if (p `mod` 4 == 3) then 1 else 0
+                c = if p `mod` 4 == 3 then 1 else 0
         nd4 = n `div` 4
         nd16 = n `div` 16
 
