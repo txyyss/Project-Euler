@@ -116,7 +116,7 @@ filterRank l rs = map (\x -> fst $ head $ filter (\(a,b)->b==x) rs) l
 filterRestRank :: Int -> [(Rank, Int)] -> [Rank]
 filterRestRank i rs = prefered ++ rest
   where (rs1, rs2) = partition (\(a,b)->b==i) rs
-        getDistinctRanks = reverse . sort . map fst . Set.toList . Set.fromList
+        getDistinctRanks = sortBy (flip compare) . map fst . Set.toList . Set.fromList
         prefered = getDistinctRanks rs1
         rest = getDistinctRanks rs2
         

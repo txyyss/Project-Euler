@@ -76,6 +76,6 @@ generateNums n d = [(size, map (foldl1 (\x y -> x * 10 + y)) $ sequence candidat
 
 maxRepeatedPrimes :: Int -> Integer -> [Integer]
 maxRepeatedPrimes n = head . filter (not.null) . map (filter isPrime . concatMap snd) .
-                      groupBy ((==) `on` fst) . reverse . sortBy (comparing fst) . generateNums n
+                      groupBy ((==) `on` fst) . sortBy (flip (comparing fst)) . generateNums n
 
 result111 = sum $ map (sum . maxRepeatedPrimes 10) [0..9]
